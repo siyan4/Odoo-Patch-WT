@@ -1,0 +1,679 @@
+diff --git a/addons/base/data/ir_cron_data.xml b/addons/base/data/ir_cron_data.xml
+index 0676236be..91a819335 100644
+--- a/addons/base/data/ir_cron_data.xml
++++ b/addons/base/data/ir_cron_data.xml
+@@ -14,7 +14,8 @@
+         <field name="name">Base: Portal Users Deletion</field>
+         <field name="model_id" ref="base.model_res_users_deletion"/>
+         <field name="state">code</field>
+-        <field name="code">model._gc_portal_users(batch_size=50)</field>
++        <!--<field name="code">model._gc_portal_users(batch_size=50)</field>-->
++        <field name="code">model._gc_portal_users(50)</field>
+         <field name='interval_number'>1</field>
+         <field name='interval_type'>days</field>
+         <field name="priority">8</field>
+diff --git a/addons/base/views/ir_actions_views.xml b/addons/base/views/ir_actions_views.xml
+index 5fa183b9e..1746e37f0 100644
+--- a/addons/base/views/ir_actions_views.xml
++++ b/addons/base/views/ir_actions_views.xml
+@@ -586,7 +586,8 @@ env['res.partner'].create({'name': partner_name})
+             <field name="model_id" ref="model_res_config"/>
+             <field name="state">code</field>
+             <field name="code">
+-config = model.next() or {}
++<!--config = model.next() or {}-->
++config = model.next()
+ if config.get('type') not in ('ir.actions.act_window_close',):
+     action = config
+ </field>
+diff --git a/addons/spreadsheet/static/src/o_spreadsheet/o_spreadsheet.js.map b/addons/spreadsheet/static/src/o_spreadsheet/o_spreadsheet.js.map
+new file mode 120000
+index 000000000..96197a141
+--- /dev/null
++++ b/addons/spreadsheet/static/src/o_spreadsheet/o_spreadsheet.js.map
+@@ -0,0 +1 @@
++o_spreadsheet.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/alert.js.map b/addons/web/static/lib/bootstrap/js/dist/alert.js.map
+new file mode 120000
+index 000000000..e19326b7d
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/alert.js.map
+@@ -0,0 +1 @@
++alert.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/base-component.js.map b/addons/web/static/lib/bootstrap/js/dist/base-component.js.map
+new file mode 120000
+index 000000000..e980ac500
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/base-component.js.map
+@@ -0,0 +1 @@
++base-component.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/button.js.map b/addons/web/static/lib/bootstrap/js/dist/button.js.map
+new file mode 120000
+index 000000000..797dda114
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/button.js.map
+@@ -0,0 +1 @@
++button.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/carousel.js.map b/addons/web/static/lib/bootstrap/js/dist/carousel.js.map
+new file mode 120000
+index 000000000..2d875f500
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/carousel.js.map
+@@ -0,0 +1 @@
++carousel.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/collapse.js.map b/addons/web/static/lib/bootstrap/js/dist/collapse.js.map
+new file mode 120000
+index 000000000..39344d048
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/collapse.js.map
+@@ -0,0 +1 @@
++collapse.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/dom/data.js.map b/addons/web/static/lib/bootstrap/js/dist/dom/data.js.map
+new file mode 120000
+index 000000000..21abfa45a
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/dom/data.js.map
+@@ -0,0 +1 @@
++data.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/dom/event-handler.js.map b/addons/web/static/lib/bootstrap/js/dist/dom/event-handler.js.map
+new file mode 120000
+index 000000000..853624407
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/dom/event-handler.js.map
+@@ -0,0 +1 @@
++event-handler.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/dom/manipulator.js.map b/addons/web/static/lib/bootstrap/js/dist/dom/manipulator.js.map
+new file mode 120000
+index 000000000..72bd130e9
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/dom/manipulator.js.map
+@@ -0,0 +1 @@
++manipulator.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/dom/selector-engine.js.map b/addons/web/static/lib/bootstrap/js/dist/dom/selector-engine.js.map
+new file mode 120000
+index 000000000..9db903ec0
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/dom/selector-engine.js.map
+@@ -0,0 +1 @@
++selector-engine.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/dropdown.js.map b/addons/web/static/lib/bootstrap/js/dist/dropdown.js.map
+new file mode 120000
+index 000000000..802291b1e
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/dropdown.js.map
+@@ -0,0 +1 @@
++dropdown.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/modal.js.map b/addons/web/static/lib/bootstrap/js/dist/modal.js.map
+new file mode 120000
+index 000000000..8fe67d1e6
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/modal.js.map
+@@ -0,0 +1 @@
++modal.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/offcanvas.js.map b/addons/web/static/lib/bootstrap/js/dist/offcanvas.js.map
+new file mode 120000
+index 000000000..a688b1a07
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/offcanvas.js.map
+@@ -0,0 +1 @@
++offcanvas.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/popover.js.map b/addons/web/static/lib/bootstrap/js/dist/popover.js.map
+new file mode 120000
+index 000000000..38a13ab0c
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/popover.js.map
+@@ -0,0 +1 @@
++popover.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/scrollspy.js.map b/addons/web/static/lib/bootstrap/js/dist/scrollspy.js.map
+new file mode 120000
+index 000000000..aa2529039
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/scrollspy.js.map
+@@ -0,0 +1 @@
++scrollspy.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/tab.js.map b/addons/web/static/lib/bootstrap/js/dist/tab.js.map
+new file mode 120000
+index 000000000..07114a277
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/tab.js.map
+@@ -0,0 +1 @@
++tab.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/toast.js.map b/addons/web/static/lib/bootstrap/js/dist/toast.js.map
+new file mode 120000
+index 000000000..9b8f890a8
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/toast.js.map
+@@ -0,0 +1 @@
++toast.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/tooltip.js.map b/addons/web/static/lib/bootstrap/js/dist/tooltip.js.map
+new file mode 120000
+index 000000000..9443e665f
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/tooltip.js.map
+@@ -0,0 +1 @@
++tooltip.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/util/backdrop.js.map b/addons/web/static/lib/bootstrap/js/dist/util/backdrop.js.map
+new file mode 120000
+index 000000000..cf30bf108
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/util/backdrop.js.map
+@@ -0,0 +1 @@
++backdrop.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/util/component-functions.js.map b/addons/web/static/lib/bootstrap/js/dist/util/component-functions.js.map
+new file mode 120000
+index 000000000..2dc547a83
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/util/component-functions.js.map
+@@ -0,0 +1 @@
++component-functions.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/util/config.js.map b/addons/web/static/lib/bootstrap/js/dist/util/config.js.map
+new file mode 120000
+index 000000000..a2d72a240
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/util/config.js.map
+@@ -0,0 +1 @@
++config.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/util/focustrap.js.map b/addons/web/static/lib/bootstrap/js/dist/util/focustrap.js.map
+new file mode 120000
+index 000000000..ecb1ffdcc
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/util/focustrap.js.map
+@@ -0,0 +1 @@
++focustrap.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/util/index.js.map b/addons/web/static/lib/bootstrap/js/dist/util/index.js.map
+new file mode 120000
+index 000000000..945ce43a9
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/util/index.js.map
+@@ -0,0 +1 @@
++index.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/util/sanitizer.js.map b/addons/web/static/lib/bootstrap/js/dist/util/sanitizer.js.map
+new file mode 120000
+index 000000000..2ec5e8bf7
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/util/sanitizer.js.map
+@@ -0,0 +1 @@
++sanitizer.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/util/scrollbar.js.map b/addons/web/static/lib/bootstrap/js/dist/util/scrollbar.js.map
+new file mode 120000
+index 000000000..c6f6f3856
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/util/scrollbar.js.map
+@@ -0,0 +1 @@
++scrollbar.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/util/swipe.js.map b/addons/web/static/lib/bootstrap/js/dist/util/swipe.js.map
+new file mode 120000
+index 000000000..efb8f1896
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/util/swipe.js.map
+@@ -0,0 +1 @@
++swipe.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/bootstrap/js/dist/util/template-factory.js.map b/addons/web/static/lib/bootstrap/js/dist/util/template-factory.js.map
+new file mode 120000
+index 000000000..f89682e66
+--- /dev/null
++++ b/addons/web/static/lib/bootstrap/js/dist/util/template-factory.js.map
+@@ -0,0 +1 @@
++template-factory.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/dompurify/DOMpurify.js.map b/addons/web/static/lib/dompurify/DOMpurify.js.map
+new file mode 120000
+index 000000000..c64050e3d
+--- /dev/null
++++ b/addons/web/static/lib/dompurify/DOMpurify.js.map
+@@ -0,0 +1 @@
++DOMpurify.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/luxon/luxon.js.map b/addons/web/static/lib/luxon/luxon.js.map
+new file mode 120000
+index 000000000..e28a3552f
+--- /dev/null
++++ b/addons/web/static/lib/luxon/luxon.js.map
+@@ -0,0 +1 @@
++luxon.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/pdfjs/build/pdf.mjs.map b/addons/web/static/lib/pdfjs/build/pdf.mjs.map
+new file mode 120000
+index 000000000..ed90d4b0f
+--- /dev/null
++++ b/addons/web/static/lib/pdfjs/build/pdf.mjs.map
+@@ -0,0 +1 @@
++pdf.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/pdfjs/build/pdf.worker.mjs.map b/addons/web/static/lib/pdfjs/build/pdf.worker.mjs.map
+new file mode 120000
+index 000000000..e6ff77188
+--- /dev/null
++++ b/addons/web/static/lib/pdfjs/build/pdf.worker.mjs.map
+@@ -0,0 +1 @@
++pdf.worker.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/pdfjs/web/viewer.mjs.map b/addons/web/static/lib/pdfjs/web/viewer.mjs.map
+new file mode 120000
+index 000000000..17f13cdce
+--- /dev/null
++++ b/addons/web/static/lib/pdfjs/web/viewer.mjs.map
+@@ -0,0 +1 @@
++viewer.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/popper/popper.js.map b/addons/web/static/lib/popper/popper.js.map
+new file mode 120000
+index 000000000..1d3d301df
+--- /dev/null
++++ b/addons/web/static/lib/popper/popper.js.map
+@@ -0,0 +1 @@
++popper.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/signature_pad/signature_pad.umd.js.map b/addons/web/static/lib/signature_pad/signature_pad.umd.js.map
+new file mode 120000
+index 000000000..79dfea911
+--- /dev/null
++++ b/addons/web/static/lib/signature_pad/signature_pad.umd.js.map
+@@ -0,0 +1 @@
++signature_pad.umd.js
+\ No newline at end of file
+diff --git a/addons/web/static/lib/zxing-library/zxing-library.js.map b/addons/web/static/lib/zxing-library/zxing-library.js.map
+new file mode 120000
+index 000000000..8f569e9ae
+--- /dev/null
++++ b/addons/web/static/lib/zxing-library/zxing-library.js.map
+@@ -0,0 +1 @@
++zxing-library.js
+\ No newline at end of file
+diff --git a/addons/web/static/src/public/database_manager.master_input.qweb.html b/addons/web/static/src/public/database_manager.master_input.qweb.html
+index 4760bddab..ce21f66ab 100644
+--- a/addons/web/static/src/public/database_manager.master_input.qweb.html
++++ b/addons/web/static/src/public/database_manager.master_input.qweb.html
+@@ -1,5 +1,11 @@
+ <t>
+-    <t t-set="set_master_pwd" t-value="set_master_pwd or False" />
++    <!--<t t-set="set_master_pwd" t-value="set_master_pwd or False" />-->
++    <t t-if="set_master_pwd">
++        <t t-set="set_master_pwd" t-value="set_master_pwd" />
++    </t>
++    <t t-elif="">
++        <t t-set="set_master_pwd" t-value="False" />
++    </t>
+     <t t-set="input_class" t-value="'form-control'" />
+ 
+     <t t-if="insecure">
+@@ -15,7 +21,7 @@
+             <t t-set="input_class" t-value="'form-control generated_master_pwd_input'" />
+         </t>
+     </t>
+-    <t t-if="not insecure or not set_master_pwd">
++    <!--<t t-if="not insecure or not set_master_pwd">-->
+         <div class="row mb-3">
+             <label for="master_pwd" class="col-md-4 col-form-label">Master Password</label>
+             <div class="col-md-8">
+@@ -30,5 +36,5 @@
+                 </div>
+             </div>
+         </div>
+-    </t>
++    <!--</t>-->
+ </t>
+diff --git a/addons/web/static/src/public/database_manager.qweb.html b/addons/web/static/src/public/database_manager.qweb.html
+index 404237988..821743ccb 100644
+--- a/addons/web/static/src/public/database_manager.qweb.html
++++ b/addons/web/static/src/public/database_manager.qweb.html
+@@ -31,56 +31,66 @@
+         <div class="row">
+             <div class="col-lg-6 offset-lg-3 o_database_list">
+                 <img src="/web/static/img/logo2.png" class="img-fluid d-block mx-auto"/>
+-                <t t-if="not list_db">
++                <!--<t t-if="not list_db">-->
++                <t t-if="list_db">
++                </t>
++                <t t-elif="">
+                     <div class="alert alert-danger text-center">The database manager has been disabled by the administrator</div>
+                 </t>
+-                <t t-elif="insecure and databases">
+-                    <div class="alert alert-warning">
+-                        Warning, your Odoo database manager is not protected.<br/>
+-                        Please <a href="#" data-bs-toggle="modal" data-bs-target=".o_database_master">set a master password</a> to secure it.
+-                    </div>
++                <t t-elif="insecure">
++                    <t t-if="databases">
++                        <div class="alert alert-warning">
++                            Warning, your Odoo database manager is not protected.<br/>
++                            Please <a href="#" data-bs-toggle="modal" data-bs-target=".o_database_master">set a master password</a> to secure it.
++                        </div>
++                    </t>
++                    <t t-else="">
++                    </t>
+                 </t>
+                 <t t-if="error">
+                     <div class="alert alert-danger" t-out="error"></div>
+                 </t>
+-                <t t-if="list_db and databases">
+-                    <div class="list-group">
++                <!--<t t-if="list_db and databases">-->
++                <t t-if="list_db">
++                    <t t-if="databases">
++                        <div class="list-group">
+ 
+-                        <t t-foreach="databases" t-as="db">
+-                            <div class="list-group-item d-flex align-items-center">
+-                                <a t-attf-href="/odoo?db={{ db }}" class="d-block flex-grow-1">
+-                                    <t t-if="db in incompatible_databases">
+-                                        <i class="icon fa fa-warning float-end text-warning" title="This database may not be compatible"></i>
++                            <t t-foreach="databases" t-as="db">
++                                <div class="list-group-item d-flex align-items-center">
++                                    <a t-attf-href="/odoo?db={{ db }}" class="d-block flex-grow-1">
++                                        <t t-if="db in incompatible_databases">
++                                            <i class="icon fa fa-warning float-end text-warning" title="This database may not be compatible"></i>
++                                        </t>
++                                        <t t-out="db" />
++                                    </a>
++                                    <t t-if="manage">
++                                        <div class="btn-group btn-group-sm float-end">
++                                            <button type="button" t-att-data-db="db" data-bs-target=".o_database_backup" class="o_database_action btn btn-primary">
++                                                <i class="fa fa-floppy-o fa-fw"></i> Backup
++                                            </button>
++                                            <button type="button" t-att-data-db="db" data-bs-target=".o_database_duplicate" class="o_database_action btn btn-secondary">
++                                                <i class="fa fa-files-o fa-fw"></i> Duplicate
++                                            </button>
++                                            <button type="button" t-att-data-db="db" data-bs-target=".o_database_delete" class="o_database_action btn btn-danger">
++                                                <i class="fa fa-trash-o fa-fw"></i> Delete
++                                            </button>
++                                        </div>
+                                     </t>
+-                                    <t t-out="db" />
+-                                </a>
+-                                <t t-if="manage">
+-                                    <div class="btn-group btn-group-sm float-end">
+-                                        <button type="button" t-att-data-db="db" data-bs-target=".o_database_backup" class="o_database_action btn btn-primary">
+-                                            <i class="fa fa-floppy-o fa-fw"></i> Backup
+-                                        </button>
+-                                        <button type="button" t-att-data-db="db" data-bs-target=".o_database_duplicate" class="o_database_action btn btn-secondary">
+-                                            <i class="fa fa-files-o fa-fw"></i> Duplicate
+-                                        </button>
+-                                        <button type="button" t-att-data-db="db" data-bs-target=".o_database_delete" class="o_database_action btn btn-danger">
+-                                            <i class="fa fa-trash-o fa-fw"></i> Delete
+-                                        </button>
+-                                    </div>
+-                                </t>
++                                </div>
++                            </t>
++                        </div>
++                        <t t-if="manage">
++                            <div class="d-flex mt-2">
++                                <button type="button" data-bs-toggle="modal" data-bs-target=".o_database_create" class="btn btn-primary flex-grow-1">Create Database</button>
++                                <button type="button" data-bs-toggle="modal" data-bs-target=".o_database_restore" class="btn btn-primary flex-grow-1 ms-2">Restore Database</button>
++                                <button type="button" data-bs-toggle="modal" data-bs-target=".o_database_master" class="btn btn-primary flex-grow-1 ms-2">Set Master Password</button>
++                            </div>
++                        </t>
++                        <t t-else="">
++                            <div class="text-center mt-2">
++                                <a href="/web/database/manager">Manage databases</a>
+                             </div>
+                         </t>
+-                    </div>
+-                    <t t-if="manage">
+-                        <div class="d-flex mt-2">
+-                            <button type="button" data-bs-toggle="modal" data-bs-target=".o_database_create" class="btn btn-primary flex-grow-1">Create Database</button>
+-                            <button type="button" data-bs-toggle="modal" data-bs-target=".o_database_restore" class="btn btn-primary flex-grow-1 ms-2">Restore Database</button>
+-                            <button type="button" data-bs-toggle="modal" data-bs-target=".o_database_master" class="btn btn-primary flex-grow-1 ms-2">Set Master Password</button>
+-                        </div>
+-                    </t>
+-                    <t t-else="">
+-                        <div class="text-center mt-2">
+-                            <a href="/web/database/manager">Manage databases</a>
+-                        </div>
+                     </t>
+                 </t>
+                 <t t-elif="list_db">
+diff --git a/addons/web/views/report_templates.xml b/addons/web/views/report_templates.xml
+index 7d28b2b89..bae52b746 100644
+--- a/addons/web/views/report_templates.xml
++++ b/addons/web/views/report_templates.xml
+@@ -844,10 +844,14 @@
+     <template id="styles_company_report">
+         <t t-foreach="company_ids" t-as="company" t-translation="off">
+             <t t-set="forced_vat" t-value="False"/>
+-            <t t-set="font" t-value="company.font or 'Lato'" />
+-            <t t-set="primary" t-value="company.primary_color or '#212529'" />
+-            <t t-set="secondary" t-value="company.secondary_color or '#212529'" />
+-            <t t-set="layout" t-value="company.external_report_layout_id.key or 'web.external_layout_standard'" />
++            <!--<t t-set="font" t-value="company.font or 'Lato'" />-->
++            <t t-set="font" t-value="str(bool(company.font)).replace('True', str(company.font)).replace('False', 'Lato')" />
++            <!--<t t-set="primary" t-value="company.primary_color or '#212529'" />-->
++            <t t-set="primary" t-value="str(bool(company.primary_color)).replace('True', str(company.primary_color)).replace('False', '#212529')" />
++            <!--<t t-set="secondary" t-value="company.secondary_color or '#212529'" />-->
++            <t t-set="secondary" t-value="str(bool(company.secondary_color)).replace('True', str(company.secondary_color)).replace('False', '#212529')" />
++            <!--<t t-set="layout" t-value="company.external_report_layout_id.key or 'web.external_layout_standard'" />-->
++            <t t-set="layout" t-value="str(bool(company.external_report_layout_id.key)).replace('True', str(company.external_report_layout_id.key)).replace('False', 'web.external_layout_standard')" />
+                 // Simplified color-contrast function to replicate bootstrap in report preview.
+                 @function preview-color-contrast($background) {
+                     @if (lightness($background) > 50) {
+diff --git a/addons/web/views/webclient_templates.xml b/addons/web/views/webclient_templates.xml
+index 11b1934ae..e8e4f8c02 100644
+--- a/addons/web/views/webclient_templates.xml
++++ b/addons/web/views/webclient_templates.xml
+@@ -3,7 +3,8 @@
+ 
+     <!-- Call this template instead of "web.assets_tests" to have the proper conditional check -->
+     <template id="conditional_assets_tests" name="Tests Assets Bundle">
+-        <t t-if="'tests' in debug or test_mode_enabled">
++        <!--<t t-if="'tests' in debug or test_mode_enabled">-->
++        <t t-if="test_mode_enabled">
+             <t t-if="ignore_missing_deps">
+                 <!-- FIXME: This is only to ignore the errors for the lazy loading. To allow all tests assets and tours to be in the same bundle, the assets_tests bundle ignores missing dependencies -->
+                 <t t-call-assets="web.__assets_tests_call__" defer_load="True" />
+@@ -15,19 +16,23 @@
+     </template>
+ 
+     <template id="web.layout" name="Web layout">&lt;!DOCTYPE html&gt;
+-<html t-att="html_data or {}">
++<!--<html t-att="html_data or {}">-->
++<html t-att="html_data">
+     <head>
+         <meta charset="utf-8"/>
+         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+-        <title t-esc="title or 'Odoo'"/>
+-        <link type="image/x-icon" rel="shortcut icon" t-att-href="x_icon or '/web/static/img/favicon.ico'"/>
++        <!--<title t-esc="title or 'Odoo'"/>-->
++        <title t-esc="str(bool(title)).replace('True', str(title)).replace('False', 'Odoo')"/>
++        <!--<link type="image/x-icon" rel="shortcut icon" t-att-href="x_icon or '/web/static/img/favicon.ico'"/>-->
++        <link type="image/x-icon" rel="shortcut icon" t-att-href="str(bool(x_icon)).replace('True', str(x_icon)).replace('False', '/web/static/img/favicon.ico')"/>
+         <script id="web.layout.odooscript" type="text/javascript">
+             var odoo = {
+                 csrf_token: "<t t-nocache="The csrf token must always be up to date." t-esc="request.csrf_token(None)"/>",
+                 debug: "<t t-esc="debug"/>",
+             };
+         </script>
+-        <t t-out="head or ''"/>
++        <!--<t t-out="head or ''"/>-->
++        <t t-out="head"/>
+     </head>
+     <body t-att-class="body_classname">
+         <t t-out="0"/>
+@@ -58,8 +63,10 @@
+         <t t-call-assets="web.assets_frontend_lazy" t-css="false" lazy_load="True"/>
+       </xpath>
+         <xpath expr="//t[@t-out='0']" position="replace">
+-            <div id="wrapwrap" t-attf-class="#{pageName or ''}">
+-                <header t-if="not no_header" id="top" data-anchor="true">
++            <!--<div id="wrapwrap" t-attf-class="#{pageName or ''}">-->
++            <div id="wrapwrap" t-attf-class="#{str(bool(pageName)).replace('True', str(pageName)).replace('False', '')}">
++                <!--<header t-if="not no_header" id="top" data-anchor="true">-->
++                <header t-if="bool(no_header) == False" id="top" data-anchor="true">
+                     <img class="img-responsive d-block mx-auto"
+                         t-attf-src="/web/binary/company_logo"
+                         alt="Logo"/>
+@@ -67,9 +74,11 @@
+                 <main>
+                     <t t-out="0"/>
+                 </main>
+-                <footer t-cache="no_footer,no_copyright" t-if="not no_footer" id="bottom" data-anchor="true" t-attf-class="bg-light o_footer">
++                <!--<footer t-cache="no_footer,no_copyright" t-if="not no_footer" id="bottom" data-anchor="true" t-attf-class="bg-light o_footer">-->
++                <footer t-cache="no_footer,no_copyright" t-if="bool(no_footer) == False" id="bottom" data-anchor="true" t-attf-class="bg-light o_footer">
+                     <div id="footer"/>
+-                    <div t-if="not no_copyright" class="o_footer_copyright">
++                    <!--<div t-if="not no_copyright" class="o_footer_copyright">-->
++                    <div t-if="bool(no_copyright) == False" class="o_footer_copyright">
+                         <div class="container py-3">
+                             <div class="row">
+                                 <div class="col-sm text-center text-sm-start text-muted">
+@@ -120,11 +129,14 @@
+                 <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: 300px;">
+                     <div class="card-body">
+                         <div class="text-center pb-3 border-bottom mb-4">
+-                            <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
++                            <!--<img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>-->
++                            <img t-attf-src="/web/binary/company_logo{{ str(bool(db)).replace('True', ''.join(['?dbname=', str(db)])).replace('False', '') }}" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
+                         </div>
+                         <t t-out="0"/>
+-                        <div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">
+-                            <t t-if="not disable_database_manager">
++                        <!--<div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">-->
++                        <div class="text-center small mt-4 pt-3 border-top" t-if="bool(disable_footer) == False">
++                            <!--<t t-if="not disable_database_manager">-->
++                            <t t-if="bool(disable_database_manager) == False">
+                                 <a class="border-end pe-2 me-1" href="/web/database/manager">Manage Databases</a>
+                             </t>
+                             <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a>
+@@ -137,11 +149,14 @@
+ 
+     <template id="web.login" name="Login">
+         <t t-call="web.login_layout">
+-            <owl-component t-if="not login" name="web.user_switch" />
+-            <form t-attf-class="oe_login_form #{'' if login else 'd-none'}" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash">
++            <!--<owl-component t-if="not login" name="web.user_switch" />-->
++            <owl-component t-if="bool(login) == False" name="web.user_switch" />
++            <!--<form t-attf-class="oe_login_form #{'' if login else 'd-none'}" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash">-->
++            <form t-attf-class="oe_login_form #{str(bool(login)).replace('True', '').replace('False', 'd-none')}" role="form" t-attf-action="/web/login" method="post" onsubmit="this.action = '/web/login' + location.hash">
+                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+ 
+-                <div class="mb-3" t-if="databases and len(databases) &gt; 1">
++                <!--<div class="mb-3" t-if="databases and len(databases) &gt; 1">-->
++                <div class="mb-3" t-if="bool(databases) &amp; len(databases) &gt; 1">
+                     <label for="db" class="col-form-label">Database</label>
+                     <div class="input-group">
+                         <input type="text" name="db" t-att-value="request.db" id="db" class="form-control" required="required" readonly="readonly"/>
+@@ -156,7 +171,8 @@
+ 
+                 <div class="mb-3">
+                     <label for="password" class="form-label d-flex justify-content-between">Password</label>
+-                    <input type="password" placeholder="Password" name="password" id="password" class="form-control" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>
++                    <!--<input type="password" placeholder="Password" name="password" id="password" class="form-control" required="required" autocomplete="current-password" t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>-->
++                    <input type="password" placeholder="Password" name="password" id="password" class="form-control" required="required" autocomplete="current-password" t-att-autofocus="str(bool(login)).replace('True', 'autofocus').replace('False', '')" maxlength="4096"/>
+                 </div>
+ 
+                 <p class="alert alert-danger" t-if="error" role="alert">
+@@ -305,7 +321,8 @@
+                 </t>
+                 <t t-call="web.conditional_assets_tests" media="screen"/>
+             </t>
+-            <t t-set="head" t-value="head_web + (head or '')" media="screen"/>
++            <!--<t t-set="head" t-value="head_web + (head or '')" media="screen"/>-->
++            <t t-set="head" t-value="head_web" media="screen"/>
+             <t t-set="body_classname" t-value="'o_web_client'"/>
+         </t>
+     </template>
+diff --git a/addons/web_editor/static/lib/html2canvas.js.map b/addons/web_editor/static/lib/html2canvas.js.map
+new file mode 120000
+index 000000000..9838ee473
+--- /dev/null
++++ b/addons/web_editor/static/lib/html2canvas.js.map
+@@ -0,0 +1 @@
++html2canvas.js
+\ No newline at end of file
+diff --git a/addons/web_editor/static/src/js/editor/odoo-editor/test/lib/mocha.js.map b/addons/web_editor/static/src/js/editor/odoo-editor/test/lib/mocha.js.map
+new file mode 120000
+index 000000000..53ad6b738
+--- /dev/null
++++ b/addons/web_editor/static/src/js/editor/odoo-editor/test/lib/mocha.js.map
+@@ -0,0 +1 @@
++mocha.js
+\ No newline at end of file
+diff --git a/addons/web_tour/views/tour_views.xml b/addons/web_tour/views/tour_views.xml
+index 1a02f4b96..13db8f8a0 100644
+--- a/addons/web_tour/views/tour_views.xml
++++ b/addons/web_tour/views/tour_views.xml
+@@ -81,8 +81,9 @@
+         <field name="binding_view_types">form</field>
+         <field name="state">code</field>
+         <field name="code">
+-if records:
+-    action = records.export_js_file()
++<!--if records:
++    action = records.export_js_file()-->
++action = records.export_js_file()
+         </field>
+     </record>
+ </odoo>
+diff --git a/http.py b/http.py
+index 0b9f9be30..f105da44a 100644
+--- a/http.py
++++ b/http.py
+@@ -129,7 +129,7 @@ endpoint
+ """
+ 
+ import base64
+-import cgi
++#import cgi
+ import collections
+ import collections.abc
+ import contextlib
+@@ -1277,7 +1277,7 @@ class HTTPRequest:
+     def __init__(self, environ):
+         httprequest = werkzeug.wrappers.Request(environ)
+         httprequest.user_agent_class = UserAgent  # use vendored userAgent since it will be removed in 2.1
+-        httprequest.parameter_storage_class = werkzeug.datastructures.ImmutableOrderedMultiDict
++        httprequest.parameter_storage_class = werkzeug.datastructures.ImmutableMultiDict
+         httprequest.max_content_length = DEFAULT_MAX_CONTENT_LENGTH
+ 
+         self.__wrapped = httprequest
+@@ -2312,8 +2312,9 @@ class Application:
+         if 'Content-Security-Policy' in headers:
+             return
+ 
+-        mime, _params = cgi.parse_header(headers.get('Content-Type', ''))
+-        if not mime.startswith('image/'):
++        if not headers.get('Content-Type', '').startswith('image/'):
++        #mime, _params = cgi.parse_header(headers.get('Content-Type', ''))
++        #if not mime.startswith('image/'):
+             return
+ 
+         headers['Content-Security-Policy'] = "default-src 'none'"
+diff --git a/release.py b/release.py
+index ebb8a8a98..4eec64414 100644
+--- a/release.py
++++ b/release.py
+@@ -35,5 +35,8 @@ author_email = 'info@odoo.com'
+ license = 'LGPL-3'
+ 
+ nt_service_name = "odoo-server-" + series.replace('~','-')
++ 
++MIN_PY_VERSION = (3, 10)
++MAX_PY_VERSION = (3, 13)
+ 
+ version += '+e-20241005'
