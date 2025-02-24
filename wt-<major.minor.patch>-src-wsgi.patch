@@ -1,0 +1,77 @@
+diff --git a/src/fcgi/WServer.C b/src/fcgi/WServer.C
+index ce00af8..b4cb162 100644
+--- a/src/fcgi/WServer.C
++++ b/src/fcgi/WServer.C
+@@ -215,7 +215,7 @@ bool WServer::start()
+ 
+   if (configuration().webSockets()) {
+     LOG_ERROR_S(this, "FastCGI does not support web-sockets, disabling");
+-    configuration().setWebSockets(false);
++    configuration().setWebSockets(true);
+   }
+ 
+   configuration().setNeedReadBodyBeforeResponse(true);
+diff --git a/src/web/Configuration.C b/src/web/Configuration.C
+index 54fc672..b3e0b61 100644
+--- a/src/web/Configuration.C
++++ b/src/web/Configuration.C
+@@ -1468,6 +1468,7 @@ bool Configuration::registerSessionId(const std::string& oldId,
+   if (!runDirectory_.empty()) {
+ 
+     if (!newId.empty()) {
++      std::string serverPID = sessionServerPID(newId);
+       std::string socketPath = sessionSocketPath(newId);
+ 
+       namespace fs = boost::filesystem;
+@@ -1478,16 +1479,21 @@ bool Configuration::registerSessionId(const std::string& oldId,
+ 
+       if (oldId.empty()) {
+         if (sessionPolicy_ == SharedProcess) {
+-          std::ofstream f(socketPath.c_str());
++          std::ofstream f(serverPID.c_str());
+           f << getpid() << std::endl;
+           f.flush();
++          link((runDirectory_ + "/server-"
++                + std::to_string(getpid())).c_str(),
++               socketPath.c_str());
+         }
+       }
+     }
+ 
+     if (!oldId.empty()) {
+-      if (newId.empty())
++      if (newId.empty()) {
++        unlink(sessionServerPID(oldId).c_str());
+         unlink(sessionSocketPath(oldId).c_str());
++      }
+       else
+         std::rename(sessionSocketPath(oldId).c_str(),
+                     sessionSocketPath(newId).c_str());
+@@ -1504,9 +1510,14 @@ std::string Configuration::generateSessionId()
+   return sessionId;
+ }
+ 
++std::string Configuration::sessionServerPID(const std::string& sessionId)
++{
++  return runDirectory_ + "/" + sessionId + ".pid";
++}
++
+ std::string Configuration::sessionSocketPath(const std::string& sessionId)
+ {
+-  return runDirectory_ + "/" + sessionId;
++  return runDirectory_ + "/" + sessionId + ".sss";
+ }
+ 
+ bool Configuration::readConfigurationProperty(const std::string& name,
+diff --git a/src/web/Configuration.h b/src/web/Configuration.h
+index aa5c46a..c0abf1d 100644
+--- a/src/web/Configuration.h
++++ b/src/web/Configuration.h
+@@ -297,6 +297,7 @@ public:
+   std::string generateSessionId();
+   bool registerSessionId(const std::string& oldId, const std::string& newId);
+ 
++  std::string sessionServerPID(const std::string& sessionId);
+   std::string sessionSocketPath(const std::string& sessionId);
+   const std::string &defaultEntryPoint() const { return defaultEntryPoint_; }
+ private:
