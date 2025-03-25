@@ -16,7 +16,7 @@ diff --git a/addons/base/views/ir_actions_views.xml b/addons/base/views/ir_actio
 index b4b319ed..dae0f12d 100644
 --- a/addons/base/views/ir_actions_views.xml
 +++ b/addons/base/views/ir_actions_views.xml
-@@ -589,7 +589,8 @@ env['res.partner'].create({'name': partner_name})
+@@ -666,7 +666,8 @@ env['res.partner'].create({'name': partner_name})
              <field name="model_id" ref="model_res_config"/>
              <field name="state">code</field>
              <field name="code">
@@ -462,7 +462,7 @@ diff --git a/addons/web/views/report_templates.xml b/addons/web/views/report_tem
 index 416fa47d..c4c1baca 100644
 --- a/addons/web/views/report_templates.xml
 +++ b/addons/web/views/report_templates.xml
-@@ -844,10 +844,14 @@
+@@ -856,10 +856,14 @@
      <template id="styles_company_report">
          <t t-foreach="company_ids" t-as="company" t-translation="off">
              <t t-set="forced_vat" t-value="False"/>
@@ -651,24 +651,25 @@ diff --git a/http.py b/http.py
 index 742b1ee0..b1abd2e9 100644
 --- a/http.py
 +++ b/http.py
-@@ -1327,7 +1327,7 @@ class HTTPRequest:
+@@ -1330,7 +1330,7 @@ class HTTPRequest:
      def __init__(self, environ):
          httprequest = werkzeug.wrappers.Request(environ)
          httprequest.user_agent_class = UserAgent  # use vendored userAgent since it will be removed in 2.1
 -        httprequest.parameter_storage_class = werkzeug.datastructures.ImmutableOrderedMultiDict
 +        httprequest.parameter_storage_class = werkzeug.datastructures.ImmutableMultiDict
          httprequest.max_content_length = DEFAULT_MAX_CONTENT_LENGTH
+         httprequest.max_form_memory_size = 10 * 1024 * 1024  # 10 MB
  
-         self.__wrapped = httprequest
 diff --git a/release.py b/release.py
 index 37b39d83..32573dfd 100644
 --- a/release.py
 +++ b/release.py
-@@ -37,6 +37,6 @@ license = 'LGPL-3'
+@@ -37,7 +37,7 @@ license = 'LGPL-3'
  nt_service_name = "odoo-server-" + series.replace('~','-')
  
  MIN_PY_VERSION = (3, 10)
 -MAX_PY_VERSION = (3, 12)
 +MAX_PY_VERSION = (3, 13)
+ MIN_PG_VERSION = 13
  
- version += '-20250207'
+ version += '-20250325'
